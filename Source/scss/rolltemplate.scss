@@ -52,7 +52,6 @@ $broadcast-white: #ccc;
 		height: 258px;
 	}
 	.sheet-fortune {
-		background-image: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/Blades%20in%20the%20Dark/Assets/rolltemplate/rolltemplate-fortune.jpg');
 		background-position: bottom right;
 		background-repeat: no-repeat;
 		background-color: white;
@@ -61,7 +60,7 @@ $broadcast-white: #ccc;
 	}
 	/* Background images */
 	.sheet-action {
-		background-image: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/Blades%20in%20the%20Dark/Assets/rolltemplate/rolltemplate-action.gif');
+		background-color: #302d2b;
 	}
 	.sheet-resist {
 		background-image: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/Blades%20in%20the%20Dark/Assets/rolltemplate/rolltemplate-resist.jpg');
@@ -153,6 +152,12 @@ $broadcast-white: #ccc;
 		text-transform: uppercase;
 		font-size: 12px;
 		letter-spacing: 1px;
+	}
+	.sheet-result {
+		color: #e74a10;
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 30px;
 	}
 	/* Dice */
 	.sheet-dice {

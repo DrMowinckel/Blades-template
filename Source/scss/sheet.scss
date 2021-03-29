@@ -430,6 +430,9 @@ $redtext: #c43c35;
 .sheet-col45{
 	width: 45%;
 }
+.sheet-col35{
+	width: 35%;
+}
 .sheet-col63 {
 	width: 63%;
 }
@@ -652,12 +655,21 @@ textarea.sheet-smallcaps {
 	padding: 3px 2px 1px 4px;
 	align-items: center;
 }
+.sheet-loadheader {
+	display: grid;
+  grid-template: 1fr 1fr / 1fr;
+	height: auto;
+}
+.sheet-load-types {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
 .sheet-loadheader label {
 	align-items: center;
 	line-height: 11px;
 	font-style: italic;
-	margin-left: auto;
-	text-transform: lowercase;
+	margin-left: 0;
 }
 .sheet-loadnumber {
 	font-weight: bold;
@@ -1517,6 +1529,20 @@ input.sheet-zero {
 		order: 2;
 	}
 }
+.sheet-action-amount {
+	margin-top: 8px;
+	margin-right: 8px;
+	
+	.sheet-checkbox + span {
+		border: 1px solid black;
+		margin: 3px;
+		order: 2;
+	}
+	
+	.sheet-stresstooth[type=radio]+span {
+		background-position: center;
+	}
+}
 /* COIN */
 .sheet-coin-and-stash {
 	width: 96%;
@@ -1849,6 +1875,23 @@ button[type=roll].sheet-rollbutton {
 	flex: 0 0 86px;
 	font-size: 13px;
 }
+.sheet-action {
+	color: black;
+	display: flex;
+	
+	&-title {
+		font-size: 13px;
+		font-weight: 600;
+	}
+	
+	&-description {
+		font-size: 10px;
+		line-height: normal;
+		margin-left: 5px;
+    padding-left: 5px;
+    border-left: 1px solid black;
+	}
+}
 .sheet-coinrow button[type=roll].sheet-rollbutton {
 	font-size: 11px;
 	color: $lightblack;
@@ -1955,12 +1998,6 @@ input.sheet-checkbox.sheet-squarebox-small, .sheet-checkbox.sheet-squarebox-smal
 	width: 16px;
 	margin-right: -14px;
 }
-.sheet-actions .sheet-checkbox + span {
-	height: 11px;
-	width: 11px;
-	border: none;
-	margin-right: calc(7px + (100% - 173px)/8);
-}
 .sheet-action .sheet-checkbox + span:first-of-type {
 	margin-right: 6px;
 }
@@ -2040,6 +2077,7 @@ input.sheet-checkbox.sheet-squarebox-small, .sheet-checkbox.sheet-squarebox-smal
 	width: 97px;
 	justify-content: flex-end;
 	height: 100%;
+	margin-left: auto;
 }
 .sheet-actioncolumn {
 	flex-grow: 1;

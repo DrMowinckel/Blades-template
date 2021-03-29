@@ -6,8 +6,8 @@
 		.col100.header.flex
 			.col55.bladeslogo
 			label.col45.header
-				+text-input('crew')
-				.label.text.title(data-i18n='crew')
+				+text-input('faction')
+				.label.text.title(data-i18n='faction')
 			label.col55
 				+text-input('name')
 				.label.text.title(data-i18n='name')
@@ -17,121 +17,62 @@
 			label.col100
 				+text-input('look')
 				.label.text.title(data-i18n='look')
-			label.col55
-				+autoexpand('heritage')
-				+hidden-input('heritage')(value='')
+			label.col100
+				+autoexpand('neighbourhood')
+				+hidden-input('neighbourhood')(value='')
 				.text
-					span.label.title(data-i18n='heritage')
-					span.uppercase.info(data-i18n='heritage_info')
-			label.col45
-				+autoexpand('background')
-				+hidden-input('background')(value='')
+					span.label.title(data-i18n='neighbourhood')
+					span.uppercase.info(data-i18n='neighbourhood_info')
+			label.col100
+				+autoexpand('oldjob')
+				+hidden-input('oldjob')(value='')
 				.text
-					span.label.title(data-i18n='background')
-					span.uppercase.info(data-i18n='background_info')
-			+hidden-input('setting_vice_type')(value='normal').vice-input
-			label.col100.vice.normal
-				+autoexpand('vice_purveyor')
-				+hidden-input('vice_purveyor')(value='')
+					span.label.title(data-i18n='oldjob')
+			+hidden-input('setting_old_habit_type')(value='normal').vice-input
+			label.col45.vice.normal
+				+autoexpand('old_habit')
+				+hidden-input('old_habit')(value='')
 				.text
-					span.label.title(data-i18n='vice_purveyor')
-					span.uppercase.info(data-i18n='vice_info')
-				+roll('Vice', '{{{{subtitle=^{viceroll1}@{stress}&nbsp;@{setting_stress_label}^{viceroll2}}} {{vice=1}} {{title=^{vice}}} @{vice_formula}')(data-i18n='indulge_vice').vicebutton.borderbutton
-				+hidden-input('vice_formula')(value=zerodiceFormula)
+					span.label.title(data-i18n='old_habit')
+					span.uppercase.info(data-i18n='old_habit_info')
+			label.col55.vice.normal
+				+autoexpand('goal')
+				+hidden-input('goal')(value='')
+				.text
+					span.label.title(data-i18n='goal')
+				//- +roll('Vice', '{{{{subtitle=^{viceroll1}@{stress}&nbsp;@{setting_stress_label}^{viceroll2}}} {{vice=1}} {{title=^{vice}}} @{vice_formula}')(data-i18n='indulge_vice').vicebutton.borderbutton
+				//- +hidden-input('vice_formula')(value=zerodiceFormula)
 			//- Special vice sections for spirit playbooks. You can safely delete the following three elements if you don't need variant vices
-			if (showSpecialVice)
-				.col100.vice.ghost
-					span.italic(data-i18n='ghost_viceblurb')
-				.col100.vice.hull
-					label.flex-wrap
-						+text-input('hull_functions')(data-i18n-placeholder='choose_3_functions', placeholder='choose 3 functions')
-						+hidden-input('hull_functions')(value='')
-						.text
-							span.label.title(data-i18n='functions')
-							span.uppercase.info(data-i18n='functions_info')
-					span.italic(data-i18n='hull_viceblurb')
-				.col100.vice.vampire
-					span.italic(data-i18n='vampire_viceblurb')
-				+roll('Vice', '{{subtitle=^{viceroll1}@{stress}&nbsp;@{setting_stress_label}^{viceroll2}}} {{vice=1}} {{title=^{vice}}} @{vice_formula}')(data-i18n='indulge_vice').vicebutton.borderbutton
 		// Stress and Trauma
-		.col100.flex.stress.def-margin
+		.col35.flex.stress.def-margin
 			// Stress markers
 			.stress1.blackheader
 				.label
-					span(name='attr_setting_stress_label')
+					span(data-i18n='hutzpah')
 			.stress2.blackborder.flex
-				+radio('stress')(value='0', checked).tooth.zero
-				//- This will generate 12 stress boxes and show 9 by default
-				each num in range(1,12)
-					if (num > 8 && num < 12)
-						+hidden-checkbox('setting_extra_stress')(value=num-9, checked=(num === 9)).extra-teeth
-					+radio('stress')(value=num).tooth.stresstooth
-			// Trauma markers
-			.stress3
-				.blackheader
-					.label
-						span(name='attr_setting_trauma_label')
-				.traumaholder.flex
-					+radio('trauma')(value='0', checked).tooth.zero
-					//- This will generate 5 trauma boxes and show 4 by default
-					each num in range(1,5)
-						if (num === 4)
-							+hidden-checkbox('setting_extra_trauma')(value='0', checked).extra-teeth
-						+radio('trauma')(value=num).tooth.regulartooth
-			// Individual traumata
-			.stress4.blackborder
-				+hidden-input('setting_traumata_set')(value='normal').input
-				each traumas, type in traumaData
-					//- Splits up traumas into two rows, each of which hold half the traumas
-					//- this pulls the traumas automatically from the traumas property in data.json
-					div(class=type)
-						.flex
-							each trauma, i in traumas.slice(0, traumas.length / 2)
-								label.text-button
-									+checkbox(`trauma_${trauma}`)(data-i18n=trauma)
-								if (i < traumas.length / 2 - 1)
-									span —
-						.flex
-							each trauma, i in traumas.slice(traumas.length / 2)
-								label.text-button
-									+checkbox(`trauma_${trauma}`)(data-i18n=trauma)
-								if (i < traumas.length / 2 - 1)
-									span —
+				+radio('hutzpah')(value='5', checked).tooth.zero
+				each num in range(1,6)
+					+radio('hutzpah')(value=num).tooth.stresstooth
 		// Harm, Healing, Armor, Coin
 		.col100.flex.def-margin
 			// Harm
 			.harm.col63
 				.blackheader.col100
 					.label(data-i18n='harm')
-					+broadcast('Harm', '{{charname=@{character_name}}} {{harm=1}} {{harm3=@{harm3}}} {{harm2_1=@{harm2_1}}} {{harm2_2=@{harm2_2}}} {{harm1_1=@{harm1_1}}} {{harm1_2=@{harm1_2}}}')
 				.harmbody
 					.flex-center.harmnumber 3
 					+textarea('harm3').twocols
-					.flex-center.harmeffect(data-i18n='need_help')
+					.flex-center.harmeffect(data-i18n='minus3')
 					.flex-center.harmnumber 2
-					+textarea('harm2_1')
-					+textarea('harm2_2')
-					.flex-center.harmeffect(data-i18n='minus1d')
+					+textarea('harm2').twocols
+					.flex-center.harmeffect(data-i18n='minus2')
 					.flex-center.harmnumber 1
-					+textarea('harm1_1')
-					+textarea('harm1_2')
-					.flex-center.harmeffect(data-i18n='less_effect')
+					+textarea('harm1').twocols
+					.flex-center.harmeffect(data-i18n='minus1')
 			// Armor, Healing and Coin
 			.col37.flex-wrap
-				// Healing
-				.col45.healing
+				.col45
 					.blackheader.col100
-						+fortuneroll('Recovery', '{{resist=1}} {{short=1}} {{title=^{recovery}}} {{subtitle=^{rolls_for}}}')(data-i18n='healing').label.rollbutton.inherit
-					.col100.healing-progress(data-i18n='progress_clock', data-i18n-title='recoveryblurb')
-					// Healing clock
-					+hidden-input('recovery_max')(value='4').size
-					.clock-container
-						.spoke-0.all
-						.spoke-90.all
-						+radio('recovery')(value='0', checked).zero.input-progress
-						each num in range(1,4)
-							input.input-progress.all(type='radio', name='attr_recovery', value=num, data-i18n-title='recoveryblurb')
-						.clock
 				// Armor
 				.armor.col55
 					.blackheader.col100
@@ -182,17 +123,15 @@
 					each num in range(1,8)
 						+radio('playbook_xp')(value=num).tooth.xptooth
 			ul.advancement-desc
-				li(data-i18n='xp_desperate')
+				li(data-i18n='6_or_lower')
 				li.nondot(data-i18n='xp_top')
 				li
 					+autoexpand('xp_condition')(data-i18n-placeholder='xp_specific')
 				+hidden-input('setting_extra_xp')(value='0').hider
 				li
 					+autoexpand('xp_condition_extra')(data-i18n-placeholder='xp_specific_extra')
-				li
-					+autoexpand('xp_condition2', 'xp_beliefs')
-				li
-					+autoexpand('xp_condition3', 'xp_vice')
+				li(data-i18n='xp_goal')
+				li(data-i18n='xp_oldhabit')
 		// Teamwork
 		.col45.right-column.def-margin
 			.plainheader.label(data-i18n='teamwork')
@@ -239,21 +178,43 @@
 		.playbook.flex
 			+text-input('playbook')(data-i18n-placeholder='playbook').label
 			+textarea('playbook_description')(data-i18n-placeholder='playbook_description').label
-			+hidden-input('show_playbook_reminder')(value='1').hider
-			.reminder
-				span(data-i18n='autofill_reminder_playbook')
-				br
-				span(data-i18n='list_playbooks')
+		.actions.col100
+				+hidden-input(`actions_xp_max`)(value='6')
+				.blackheader.col100.flex
+					.label(data-i18n='actions').col45
+					.attribute-xp-box.flex
+						//- generate 6 xp boxes
+						+radio(`actions_xp_max_xp`)(value='0', checked).tooth.zero
+						each num in range(1,6)
+							+radio(`actions_xp`)(value=num).tooth.xptooth
+				each action in actionData
+					.col100.action
+						.action-amount
+							+radio(`${action}`)(value='0', checked).tooth.zero
+							each num in range(1,3)
+								+radio(`${action}`)(value=num).tooth.checkbox.squarebox.stresstooth
+						.action-title.uppercase
+							+roll(action, '{{action=1}} {{subtitle=^{rolls}}} {{title=^{'+action+'}}} {{result=[[{@{advdis_query} + @{harm_query} + @{'+action+'}}]]}}')(data-i18n=action, data-i18n-title=`${action}_description`).rollbutton.label
+						.action-description(data-i18n=`${action}_description`)
+						+hidden-input(`${action}`)(value='0')
+				//- each attribute in actionData
+				//- 	.attribute.col100
+				//- 		.attribute-title.flex.col100
+				//- 			+roll(attribute,
+				//- 				'{{resist=1}} {{subtitle=^{resists} @{consequence_query} ^{with}}} {{title=^{'+attribute+'}}} @{'+attribute+'_formula}')(data-i18n=attribute, data-i18n-title=`${attribute}_description`).rollbutton.label
+				//- 			+hidden-input(`${attribute}`)(value='0')
+				//- 			+hidden-input(`${attribute}_formula`)(value=zerodiceFormula)
 		// Items and Planning
 		.col53.itemcolumn.small-margin
 			// Load
 			.loadheader.flex.col100
 				.label(data-i18n='load')
-				each val in ['light', 'normal', 'heavy']
-					label
-						+checkbox('load')(value=val).checkbox
-						span.loadnumber(name=`attr_setting_load_${val[0]}`)
-						span(data-i18n=val)
+				.load-types
+					each val in ['innocent', 'suspicious', 'criminal']
+						label
+							+checkbox('load')(value=val).checkbox
+							span.loadnumber(name=`attr_setting_load_${val[0]}`)
+							span(data-i18n=val)
 			.itemheader.small-margin.col100.flex
 				.label(data-i18n='items')
 				span.italic(data-i18n='italics_dont_count')
@@ -366,29 +327,6 @@
 			//- This generates the action ratings. You should only change this section if you want to change something about every
 				action at once. Modifying the names of attributes and actions (or adding/deleting actions) should be done in the
 				actions property in data.json
-			each actions, attribute in actionData
-				.attribute.col100
-					.attribute-title.flex.col100
-						+roll(attribute,
-							'{{resist=1}} {{subtitle=^{resists} @{consequence_query} ^{with}}} {{title=^{'+attribute+'}}} @{'+attribute+'_formula}')(data-i18n=attribute, data-i18n-title=`${attribute}_description`).rollbutton.label
-						+hidden-input(`${attribute}`)(value='0')
-						+hidden-input(`${attribute}_formula`)(value=zerodiceFormula)
-						+hidden-input(`${attribute}_xp_max`)(value='6')
-						.attribute-xp-box.flex
-							//- generate 6 xp boxes
-							+radio(`${attribute}_xp`)(value='0', checked).tooth.zero
-							each num in range(1,6)
-								+radio(`${attribute}_xp`)(value=num).tooth.xptooth
-					.actions.col100
-						each action in actions
-							.action.flex.col100
-								+hidden-input(`${action}_formula`)(value=zerodiceFormula)
-								+hidden-checkbox(action)(value='0', checked).fakeradio
-								+checkbox(action)(value='1').checkbox.circlebox.fakeradio
-								.divider
-								each num in range(2,4)
-									+checkbox(action)(value=num).checkbox.circlebox.fakeradio
-								+roll(action, '{{action=1}} {{subtitle=^{rolls}}} {{title=^{'+action+'}}} {{@{position_query}}} {{effect=@{effect_query}}} @{'+action+'_formula}')(data-i18n=action, data-i18n-title=`${action}_description`).rollbutton.label
 			// Cohort
 			+hidden-input('setting_show_cohort')(value='0').hider
 			+makecohort('char_cohort_', true)
@@ -400,7 +338,7 @@
 					.bonusdietext
 						.label(data-i18n='push_yourself')
 						span(data-i18n='push_yourself_desc1')
-						span(name='attr_setting_stress_label')
+						span(data-i18n='hutzpah')
 						span(data-i18n='push_yourself_desc2')
 						.label(data-i18n='devils_bargain')
 			// Friends

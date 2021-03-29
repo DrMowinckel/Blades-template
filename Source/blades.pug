@@ -16,7 +16,7 @@
 
 	// Javascript really needs a range function
 	const range = (start, end) => [...Array(end+1).keys()].slice(start);
-	const zerodiceFormula = ' {{?{@{bonusdice}|0,zerodice=[[d6]]&#44; [[d6]]|1,dice=[[d6]]|2,dice=[[d6]]&#44; [[d6]]|3,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]|4,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]|5,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]|6,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]|-1,zerodice=[[d6]]&#44; [[d6]]|-2,zerodice=[[d6]]&#44; [[d6]]|-3,zerodice=[[d6]]&#44; [[d6]]}}}';
+	//- const zerodiceFormula = '{{?{Are you rolling with Advantage or Disadvantage?|Neither,2d6|Advantage,2d6+1[with Advantage]|Disadvantage,3d6-1[with Disadvantage]}}}';
 
 
 //- Mixins for code reuse
@@ -80,7 +80,6 @@ mixin makecohort(prefix, isCharacter)
 		+hidden-input(`${prefix}roll_formula`)(value=zerodiceFormula)
 		.cohort-title.flex.col100.label
 			+text-input(`${prefix}name`, 'cohort').inherit
-			+roll(`${prefix}roll`, '{{resist=1}} {{short=1}} {{charname=@{'+prefix+'name} (^{@{'+prefix+'type}}, @{'+prefix+'subtype})}} {{title=^{cohort_quality}}} {{subtitle=@{'+prefix+'verb}}}) @{'+prefix+'roll_formula}')(data-i18n='roll-inf').inherit.rollbutton
 		.cohort-info.flex.col100.uppercase
 			.cohort-dropdown
 				div
@@ -159,10 +158,9 @@ mixin makeclock(isFaction)
 +hidden-input('setting_flexwidth')(value='0').flexwidth
 +hidden-input('changed_attributes')(value='')
 +hidden-input('bonusdice')(value='Bonus dice')
-+hidden-input('numberofdice')(value=' {{?{Number of dice|0,zerodice=[[d6]]&#44; [[d6]]|1,dice=[[d6]]|2,dice=[[d6]]&#44; [[d6]]|3,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]|4,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]|5,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]|6,dice=[[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]&#44; [[d6]]}}}')
++hidden-input('advdis_query')(value='?{Are you rolling with Advantage or Disadvantage?|Neither,2d6|Advantage,2d6+1[with Advantage]|Disadvantage,3d6-1[with Disadvantage]}')
++hidden-input('harm_query')(value='?{Level of harm?|No harm,0|Level 1 Harm,-1|Level 2 Harm,-2|Level 3 Harm,-3}')
 +hidden-input('notes_query')(value='?{Notes}')
-+hidden-input('position_query')(value='?{Position|Risky,position=Risky|Controlled,position=Controlled|Desperate,position=Desperate|Fortune roll,position=}')
-+hidden-input('effect_query')(value='?{Effect|Standard|Limited|Great|Extreme|Zero}')
 +hidden-input('consequence_query')(value='^{a_consequence}')
 
 
