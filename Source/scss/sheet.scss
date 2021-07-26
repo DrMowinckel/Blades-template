@@ -421,6 +421,12 @@ $redtext: #c43c35;
 .sheet-col50 {
 	width: 50%;
 }
+.sheet-col10 {
+	width: 10%;
+}
+.sheet-col15 {
+	width: 15%;
+}
 .sheet-col52b {
 	width: 52%;
 }
@@ -488,7 +494,6 @@ textarea.sheet-smallcaps {
 }
 /* ITEMS/UPGRADES */
 .sheet-itemcolumn {
-	max-width: 249px;
 }
 .sheet-itemholder > div {
 	padding: 5px;
@@ -663,7 +668,8 @@ textarea.sheet-smallcaps {
 .sheet-load-types {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
+	column-gap: 15px;
 }
 .sheet-loadheader label {
 	align-items: center;
@@ -1680,16 +1686,24 @@ input.sheet-zero {
 	font-size: 12px;
 }
 .sheet-bonusdieplus {
-	width: 10%;
+	width: 100%;
+	padding: 5%;
 	background: black;
 	color: white;
 	font-size: 13px;
 	line-height: 1;
 	font-weight: bold;
+	position: relative;
+	
+	button {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
 }
 .sheet-bonusdietext {
 	background: $lightest;
-	width: 90%;
+	width: 100%;
 	padding: 3px;
 	font-size: 11px;
 	line-height: 14px;

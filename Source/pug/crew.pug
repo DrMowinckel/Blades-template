@@ -33,20 +33,14 @@ mixin makeupgrade(number, numboxes, def, desc)
 				+text-input('crew_name')
 				.label.text.title(data-i18n='name')
 			label.col45
-				+text-input('goal')
-				.label.text.title(data-i18n='goal')
+				+text-input('core_goal')
+				.label.text.title(data-i18n='core_goal')
 			label.col55
 				+text-input('lair')
 				.label.text.title(data-i18n='lair')
 			label.col45
 				+text-input('district')
 				.label.text.title(data-i18n='district')
-			label.col55
-				+text-input('hunting grounds')
-				.label.text.title(data-i18n='hunting_grounds')
-			label.col45
-				+text-input('method')
-				.label.text.title(data-i18n='method')
 		// Rep, Hold, and Tier
 		.col100.flex.rep-and-hold.def-margin
 			// Hold
